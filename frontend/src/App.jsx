@@ -7,7 +7,7 @@ import Dashboard from "./components/Dashboard";
 import Leaderboard from "./components/Leaderboard";
 import InfluencerDetail from "./components/InfluencerDetail";
 import shieldLogo from "./assets/shield-logo.png"; // Ensure you have a shield logo image in the assets folder
-import './app.css'; // Import the CSS file
+import './App.css'; // Import the CSS file
 
 function NavBar() {
   const navigate = useNavigate();
