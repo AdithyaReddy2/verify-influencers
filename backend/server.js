@@ -9,7 +9,10 @@ require("dotenv").config();
 
 const app = express();
 app.use(cors({
-  origin: "https://verify-influencers-frontend.onrender.com" // Replace with your frontend URL
+  origin: 'https://verify-influencers-frontend.onrender.com', // Replace with your frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
 }));
 app.use(express.json());
 
