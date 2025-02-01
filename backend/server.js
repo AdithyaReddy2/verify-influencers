@@ -8,7 +8,9 @@ const fs = require("fs"); // For file system operations
 require("dotenv").config();
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: 'https://verify-influencers-frontend.onrender.com' // Replace with your frontend URL
+}));
 app.use(express.json());
 
 // MongoDB Connection
