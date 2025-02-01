@@ -1,0 +1,52 @@
+/* Reset default margin and padding */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Ensure the body takes up the full height of the viewport */
+  width: 100%; /* Ensure the body takes up the full width of the viewport */
+  font-family: Arial, sans-serif;
+  background-color: black; /* Set background color to black */
+  color: white; /* Set text color to white */
+}
+
+/* Background styling */
+.background {
+  width: 1350px;
+  background-image: url('/download.jpeg'); /* Add your background image */
+  background-size: cover; /* Ensure the background covers the entire screen */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent the background from repeating */
+  height: 100vh; /* Ensure the background covers the full viewport height */
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  width: 100%; /* Ensure the background covers the full width */
+}
+
+/* Form container styling */
+.form-container {
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent black background */
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  width: 350px; /* Ensure the form container covers the full width */
+  margin: 0 2rem; /* Add some margin to the left and right */
+  color: white; /* Set text color to white */
+}
+
+/* Optional: Add some spacing and styling for the form elements */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Space between form fields */
+}
+
+/* Optional: Style the "Sign up" link */
+Link {
+  color: #1976d2; /* Material-UI primary color */
+  font-weight: bold;
+}
+
+Link:hover {
+  text-decoration: underline;
+}

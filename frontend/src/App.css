@@ -1,0 +1,35 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: black;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  color: white;
+}
+
+.navbar {
+  background-color: black !important; /* Ensure the background color is applied */
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  margin-right: 16px;
+}
+
+.title {
+  flex-grow: 1;
+  color: white;
+}
+
+.nav-button {
+  color: white;
+}
