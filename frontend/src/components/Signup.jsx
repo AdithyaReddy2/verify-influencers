@@ -25,7 +25,7 @@ export default function Signup() {
       formData.append("trustScore", trustScore);
       formData.append("followers", followers);
 
-      const res = await axios.post("http://localhost:5000/api/signup", formData, {
+      const res = await axios.post("https://verify-influencers-backend.onrender.com/api/signup", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       navigate("/");

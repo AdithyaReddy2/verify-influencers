@@ -16,7 +16,7 @@ export default function Dashboard() {
 
   const handleVerify = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/api/verify", { claimText: claim });
+      const res = await axios.post("https://verify-influencers-backend.onrender.com/api/verify", { claimText: claim });
       setResult(res.data);
     } catch (err) {
       alert("Verification failed");

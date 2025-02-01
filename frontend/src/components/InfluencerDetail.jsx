@@ -8,7 +8,7 @@ export default function InfluencerDetail() {
   const [influencer, setInfluencer] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/influencers/${id}`)
+    axios.get(`https://verify-influencers-backend.onrender.com/api/influencers/${id}`)
       .then((res) => setInfluencer(res.data))
       .catch((err) => console.error("Failed to fetch influencer:", err));
   }, [id]);
