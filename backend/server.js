@@ -10,7 +10,12 @@ import dotenv from "dotenv"; // For environment variables
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: "*", // Replace with your frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}));
 app.use(express.json());
 
 const __dirname = path.resolve(); // Use this to serve static files
