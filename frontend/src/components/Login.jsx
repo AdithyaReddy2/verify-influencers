@@ -12,7 +12,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://verify-influencers-backend.onrender.com/api/login", { email, password });
+      const res = await axios.post("http://localhost:5000/api/login", { email, password });
       localStorage.setItem("userId", res.data.userId);
       localStorage.setItem("username", res.data.email);
       navigate("/leaderboard");
@@ -27,8 +27,8 @@ export default function Login() {
   };
 
   return (
-    <div className="background">
-      <div className="form-container" style={{color: "black"}}>
+    <div className="background" style={{width: "1350px"}}>
+      <div className="form-container" style={{color: "black"}} >
         <Typography variant="h4" gutterBottom align="center" >Login</Typography>
         <form onSubmit={handleSubmit}>
           <TextField

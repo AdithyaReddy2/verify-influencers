@@ -1,15 +1,19 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
-const cors = require("cors");
-const multer = require("multer"); // For file uploads
-const path = require("path"); // For handling file paths
-const fs = require("fs"); // For file system operations
-require("dotenv").config();
+import express from "express";
+import mongoose from "mongoose";
+import bcrypt from "bcryptjs";
+import cors from "cors";
+import multer from "multer"; // For file uploads
+import path from "path"; // For file paths
+import fs from "fs"; // For file system operations
+import dotenv from "dotenv"; // For environment variables
+
+dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+const __dirname = path.resolve(); // Use this to serve static files
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI)
@@ -38,12 +42,12 @@ const User = mongoose.model("User", userSchema);
 // Configure multer for file uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    // Ensure the "uploads" directory exists
-    const uploadDir = "../frontend/public";
+    // Ensure the "dist" directory exists
+    const uploadDir = path.join(__dirname, "../frontend/dist");
     if (!fs.existsSync(uploadDir)) {
       fs.mkdirSync(uploadDir, { recursive: true });
     }
-    cb(null, uploadDir); // Save files in the "uploads" folder
+    cb(null, uploadDir); // Save files in the "dist" folder
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname)); // Unique filename
@@ -52,14 +56,14 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-// Serve static files from the "uploads" folder
-app.use("../frontend/public", express.static("uploads"));
+// Serve static files from the "dist" folder
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 // Signup Endpoint with Profile Picture Upload
 app.post("/api/signup", upload.single("profilePicture"), async (req, res) => {
   try {
     const { username, email, password, category, trustScore, followers } = req.body;
-    const profilePicture = req.file ? `${req.file.filename}` : null;
+    const profilePicture = req.file ? `/dist/${req.file.filename}` : null;
 
     // Validate input
     if (!username || !email || !password || !category || !trustScore || !followers) {
@@ -144,6 +148,16 @@ app.get("/api/influencers/:id", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch influencer details" });
   }
 });
+
+if (process.env.NODE_ENV === "production") {
+  // Serve static files from the React frontend app
+  app.use(express.static(path.join(__dirname, "frontend/dist")));
+
+  // Anything that doesn't match the above, send back the index.html file
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend/dist", "index.html"));
+  });
+}
 
 // Start Server
 const PORT = process.env.PORT || 5000;

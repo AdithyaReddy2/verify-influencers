@@ -9,7 +9,7 @@ export default function Leaderboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("https://verify-influencers-backend.onrender.com/api/influencers")
+    axios.get("http://localhost:5000/api/influencers")
       .then((res) => {
         console.log("Fetched influencers:", res.data);
         setInfluencers(res.data);

@@ -6,6 +6,7 @@ import Signup from "./components/Signup";
 import Dashboard from "./components/Dashboard";
 import Leaderboard from "./components/Leaderboard";
 import InfluencerDetail from "./components/InfluencerDetail";
+import Footer from "./components/Footer"; // Import the Footer component
 import shieldLogo from "./assets/shield-logo.png"; // Ensure you have a shield logo image in the assets folder
 import './app.css'; // Import the CSS file
 
@@ -64,8 +65,9 @@ export default function App() {
   return (
     <Router>
       <CssBaseline />
-      <Box className="app-container">
+      <Box className="app-container" sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <AppContent />
+        <Footer /> {/* Add the Footer component */}
       </Box>
     </Router>
   );
